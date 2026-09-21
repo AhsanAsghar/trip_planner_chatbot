@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wayfinder — AI Trip Planner</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%230B3B3C' stroke-width='1.6'/%3E%3Cpath d='M15 9l-4 2-2 4 4-2z' fill='%23D9A441'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M15.2 8.8l-4 2-2 4 4-2z" fill="currentColor"/>
+    </svg>
+    <div>
+      <p class="eyebrow">Trip Planning Concierge</p>
+      <h1>Wayfinder</h1>
+    </div>
+  </div>
+  <button class="btn-ghost" id="reset-btn" title="Start a new trip">New Trip</button>
+</header>
+
+<main class="chat-shell">
+  <div class="chat-scroll" id="chat-scroll">
+    <div class="empty-state" id="empty-state">
+      <p class="empty-title">Where are we headed?</p>
+      <p class="empty-subtitle">Tell me a destination and how many days you have — I'll ask anything else I need to know.</p>
+      <div class="suggestion-chips">
+        <button class="chip" data-prompt="5 days in Japan — I love food, temples, and a mid-range budget.">5 days in Japan, food &amp; temples</button>
+        <button class="chip" data-prompt="Long weekend in Lisbon, first time visiting, love beaches and nightlife.">Weekend in Lisbon</button>
+        <button class="chip" data-prompt="10 days backpacking through Vietnam on a tight budget.">10 days backpacking Vietnam</button>
+      </div>
+    </div>
+    <!-- Chat turns are appended here by script.js -->
+  </div>
+
+  <form class="composer" id="composer">
+    <textarea
+      id="composer-input"
+      rows="1"
+      placeholder="Describe your trip, or answer Wayfinder's question..."
+      required
+    ></textarea>
+    <button type="submit" class="btn-send" id="send-btn" aria-label="Send">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4 12l16-7-6 16-3-6-7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </form>
+</main>
+
+<template id="user-bubble-template">
+  <div class="turn turn-user">
+    <div class="bubble bubble-user"></div>
+  </div>
+</template>
+
+<template id="assistant-bubble-template">
+  <div class="turn turn-assistant">
+    <div class="bubble bubble-assistant"></div>
+  </div>
+</template>
+
+<template id="typing-template">
+  <div class="turn turn-assistant" id="typing-indicator">
+    <div class="bubble bubble-assistant typing">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</template>
+
+<template id="error-template">
+  <div class="turn turn-assistant">
+    <div class="bubble bubble-error">
+      <p class="error-text"></p>
+      <button type="button" class="btn-retry">Try again</button>
+    </div>
+  </div>
+</template>
+
+<script src="script.js"></script>
+</body>
+</html>
